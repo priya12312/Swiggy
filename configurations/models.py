@@ -36,6 +36,9 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
+
+
+
   
 
     email = models.EmailField(
@@ -48,6 +51,20 @@ class MyUser(AbstractBaseUser):
     date_of_birth = models.DateField(null=True,blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    mobile_number = models.IntegerField(null=True,blank=True)
+    otp = models.IntegerField(null=True,blank=True)
+    otp_verify = models.BooleanField(default=False)
+    otp_expire = models.DateField(null=True,blank=True)
+    USER_TYPES = (
+        (1. 'Users'),
+        (2. 'Customer'),
+        (3. 'driver'),
+        )
+    
+    user_type = models.IntegerField(
+      choices = USER_TYPES,
+      default = 1
+    )
 
     objects = MyUserManager()
 
